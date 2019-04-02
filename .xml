@@ -709,6 +709,9 @@
   <Voxel x="4" y="8" z="2">1</Voxel>
   <Voxel x="4" y="8" z="3">1</Voxel>
   <Voxel x="4" y="8" z="4">1</Voxel>
+  <Voxel x="4" y="8" z="5">1</Voxel>
+  <Voxel x="4" y="8" z="6">1</Voxel>
+  <Voxel x="4" y="8" z="7">1</Voxel>
   <Voxel x="4" y="8" z="8">1</Voxel>
   <Voxel x="4" y="8" z="9">1</Voxel>
   <Voxel x="4" y="8" z="10">1</Voxel>
@@ -850,6 +853,9 @@
   <Voxel x="5" y="8" z="2">1</Voxel>
   <Voxel x="5" y="8" z="3">1</Voxel>
   <Voxel x="5" y="8" z="4">1</Voxel>
+  <Voxel x="5" y="8" z="5">1</Voxel>
+  <Voxel x="5" y="8" z="6">1</Voxel>
+  <Voxel x="5" y="8" z="7">1</Voxel>
   <Voxel x="5" y="8" z="8">1</Voxel>
   <Voxel x="5" y="8" z="9">1</Voxel>
   <Voxel x="5" y="8" z="10">1</Voxel>

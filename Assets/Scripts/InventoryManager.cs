@@ -14,22 +14,43 @@ public class InventoryManager : MonoBehaviour {
     // Starting template item
     public GameObject startItem;
 
+    bool remove;
+
     List<InventoryItemScript> inventoryList;
+
+    void OnEnable()
+    {
+        CollectableObjectScript.OnEventBlockPickUp += AddObject;
+    }
+
+    // When game object is disabled
+    void OnDisable()
+    {
+        CollectableObjectScript.OnEventBlockPickUp -= AddObject;
+    }
+
 
     // Use this for initialization
     void Start () {
+        //InventoryGen();
+    }
+
+	public void InventoryGen()
+    {
         inventoryList = new List<InventoryItemScript>();
         for (int i = 0; i < itemNames.Count; i++)
         {
+
             // Create a duplicate of the starter item
             GameObject inventoryItem =
             (GameObject)Instantiate(startItem);
+            inventoryItem.gameObject.name = ("InventoryItem_" + i);
             // UI items need to parented by the canvas or an object within the canvas
-         inventoryItem.transform.SetParent(parentPanel);
+            inventoryItem.transform.SetParent(parentPanel);
             // Original start item is disabled – so the duplicate must be enabled
-        inventoryItem.SetActive(true);
+            inventoryItem.SetActive(true);
             // Get InventoryItemScript component so we can set the data
-        InventoryItemScript iis = inventoryItem.GetComponent<InventoryItemScript>();
+            InventoryItemScript iis = inventoryItem.GetComponent<InventoryItemScript>();
             iis.itemSprite.sprite = itemSprites[i];
             iis.itemNameText.text = itemNames[i];
             iis.itemName = itemNames[i];
@@ -40,10 +61,22 @@ public class InventoryManager : MonoBehaviour {
         }
         DisplayListInOrder();
     }
-	
+
 	// Update is called once per frame
 	void Update () {
-
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                GameObject invItem = GameObject.Find("InventoryItem_" + i);
+                Debug.Log(invItem);
+                if (invItem)
+                {
+                    Destroy(invItem);
+                }
+            }
+            InventoryGen();
+        }
     }
 
     void DisplayListInOrder()
@@ -131,6 +164,11 @@ listIn)
         leftList.Add(listIn[pivotIndex]);
         leftList.AddRange(rightList);
         return leftList;
+    }
+
+    public void AddObject(int blockType)
+    {
+        itemAmounts[blockType - 1]++;
     }
 
 }

@@ -45,7 +45,7 @@ public class CameraScript : MonoBehaviour
     public void TrackPlayerMovement()
     {
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y, this.transform.position.z);
-            Camera.current.orthographicSize = 4f;
+            //Camera.current.orthographicSize = 4f;
         
     }
 

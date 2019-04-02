@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VoxelChunk : MonoBehaviour {
 
@@ -13,6 +14,9 @@ public class VoxelChunk : MonoBehaviour {
     public GameObject[] droppableBlock;
 
     public int chunkSize = 16;
+
+    public InputField fileNameInput;
+    string saveFileText;
 
     // delegate signature
     public delegate void EventBlockChangedWithType(int blockType);
@@ -71,13 +75,14 @@ public class VoxelChunk : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
+            saveFileText = fileNameInput.text;
             Saving();
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
+            saveFileText = fileNameInput.text;
             Loading();
         }
-
     }
 
     public void Saving()
@@ -85,14 +90,14 @@ public class VoxelChunk : MonoBehaviour {
         playerPos = player.transform.position;
         playerRot = playerCamera.transform.rotation;
 
-        XMLVoxelFileWriter.SaveChunkToXMLFile(terrainArray, "VoxelChunk");
+        XMLVoxelFileWriter.SaveChunkToXMLFile(terrainArray, saveFileText);
         XMLVoxelFileWriter.SavePlayerToXMLFile(playerPos, playerRot, "PlayerPosition");
     }
 
     public void LoadingMain()
     {
         // Get terrainArray from XML file
-        terrainArray = XMLVoxelFileWriter.LoadChunkFromXMLFile(16, "VoxelChunk");
+        terrainArray = XMLVoxelFileWriter.LoadChunkFromXMLFile(16, saveFileText);
         playerPos = XMLVoxelFileWriter.LoadPlayerPosFromXMLFile("PlayerPosition");
         playerRot = XMLVoxelFileWriter.LoadPlayerRotFromXMLFile("PlayerPosition");
         Loading();
