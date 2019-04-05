@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Inventory
   - Dropped Item
+  - Fire
+  - TempInvObject
   layers:
   - Default
   - TransparentFX

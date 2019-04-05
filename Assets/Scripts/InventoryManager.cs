@@ -14,7 +14,11 @@ public class InventoryManager : MonoBehaviour {
     // Starting template item
     public GameObject startItem;
 
-    bool remove;
+    bool remove = true;
+    bool quickSorted;
+    bool SelSorted;
+    bool MergeSorted;
+    GameObject[] invItem;
 
     List<InventoryItemScript> inventoryList;
 
@@ -44,7 +48,7 @@ public class InventoryManager : MonoBehaviour {
             // Create a duplicate of the starter item
             GameObject inventoryItem =
             (GameObject)Instantiate(startItem);
-            inventoryItem.gameObject.name = ("InventoryItem_" + i);
+            inventoryItem.gameObject.tag = ("TempInvObject");
             // UI items need to parented by the canvas or an object within the canvas
             inventoryItem.transform.SetParent(parentPanel);
             // Original start item is disabled – so the duplicate must be enabled
@@ -64,20 +68,25 @@ public class InventoryManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        //deletes and renews the inventory everytime it is opened
         if (Input.GetKeyDown(KeyCode.E))
         {
-            for (int i = 0; i < 4; i++)
+            invItem = GameObject.FindGameObjectsWithTag("TempInvObject");
+            remove = !remove;
+            if (remove)
             {
-                GameObject invItem = GameObject.Find("InventoryItem_" + i);
-                Debug.Log(invItem);
-                if (invItem)
+                foreach (GameObject item in invItem)
                 {
-                    Destroy(invItem);
+                    Destroy(item);
                 }
             }
-            InventoryGen();
+            else
+            {
+                InventoryGen();
+            }
         }
     }
+
 
     void DisplayListInOrder()
     {
@@ -90,9 +99,9 @@ public class InventoryManager : MonoBehaviour {
             iis.transform.position = startPosition;
             //set position of next item using offset
             startPosition.y -= yOffset;
-        }
+        }      
     }
-
+    /*
     public void SelectionSortInventory()
     {
         // iterate through every item in the list except last
@@ -119,16 +128,21 @@ public class InventoryManager : MonoBehaviour {
         }
         // Display the list in the new correct order
         DisplayListInOrder();
+        SelSorted = true;
+        quickSorted = false;
+        MergeSorted = false;
     }
 
     public void StartQuickSort()
     {
         inventoryList = QuickSort(inventoryList);
         DisplayListInOrder();
+        SelSorted = false;
+        quickSorted = true;
+        MergeSorted = false;
     }
 
-    List<InventoryItemScript> QuickSort(List<InventoryItemScript>
-listIn)
+    List<InventoryItemScript> QuickSort(List<InventoryItemScript> listIn)
     {
         if (listIn.Count <= 1)
         {
@@ -164,11 +178,79 @@ listIn)
         leftList.Add(listIn[pivotIndex]);
         leftList.AddRange(rightList);
         return leftList;
-    }
+    }*/
 
     public void AddObject(int blockType)
     {
         itemAmounts[blockType - 1]++;
     }
 
+
+    public void StartMergeSort()
+    {
+        inventoryList = MergeSort(inventoryList);
+        DisplayListInOrder();
+        MergeSorted = true;
+    }
+
+
+    List<InventoryItemScript> MergeSort(List<InventoryItemScript> a)
+    {
+        
+        /* check if only one element */
+        if (a.Count <= 1)
+        {
+            return a; /* no sorting needed */
+        }
+
+        List<InventoryItemScript> left = new List<InventoryItemScript>();
+        List<InventoryItemScript> right = new List<InventoryItemScript>();
+        
+        for (int i = 0; i < a.Count; i++)
+        {
+            if(i < (a.Count/2))
+            {
+                left.Add(a[i]);
+            }
+            else
+            {
+                right.Add(a[i]);
+            }
+        }
+
+        MergeSort(left);
+        MergeSort(right);
+        a = Merge(left, right);
+        return a;
+    }
+
+
+    public List<InventoryItemScript> Merge(List<InventoryItemScript> l, List<InventoryItemScript> r)
+    {
+        List<InventoryItemScript> m = new List<InventoryItemScript>();
+        int i = 0, j = 0;
+
+        while (i < l.Count && j < r.Count)
+        {
+            if (l[i].itemAmount < r[j].itemAmount)
+            {
+                m.Add(l[i]);
+                i++;
+            }
+            else
+            {
+                m.Add(r[j]);
+                j++;
+            }
+        }        if (i < l.Count)
+        {
+            m.Add(l[i]);
+        }
+        else
+        {
+            m.Add(r[j]);
+        }
+
+            return m;
+    }
 }
