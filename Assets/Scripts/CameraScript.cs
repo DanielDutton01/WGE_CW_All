@@ -6,6 +6,9 @@ public class CameraScript : MonoBehaviour
 {
     public GameObject player;
     public GameObject otherChar;
+    Vector3 originalCamPos;
+    public float shakeTime = 0f;
+    public float shakeAmount = 0.5f;
     bool dialouge;
     int i = 1;
 
@@ -29,9 +32,9 @@ public class CameraScript : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    {
-
+    { 
         TrackPlayerMovement();
+
     }
 
     // Update is called once per frame
@@ -40,13 +43,9 @@ public class CameraScript : MonoBehaviour
 
     }
 
-
-
     public void TrackPlayerMovement()
     {
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y, this.transform.position.z);
-            //Camera.current.orthographicSize = 4f;
-        
     }
 
     public void TrackPlayerDialouge()

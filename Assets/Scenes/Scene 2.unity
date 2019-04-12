@@ -562,7 +562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &443769070
 RectTransform:
   m_ObjectHideFlags: 0
@@ -787,6 +787,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1042164209}
   otherChar: {fileID: 1463855791}
+  camTransform: {fileID: 0}
+  shakeTime: 0
+  shakeAmount: 0.5
 --- !u!1 &630696922
 GameObject:
   m_ObjectHideFlags: 0

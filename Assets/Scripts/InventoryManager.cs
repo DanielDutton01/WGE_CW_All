@@ -101,84 +101,6 @@ public class InventoryManager : MonoBehaviour {
             startPosition.y -= yOffset;
         }      
     }
-    /*
-    public void SelectionSortInventory()
-    {
-        // iterate through every item in the list except last
-        for (int i = 0; i < inventoryList.Count - 1; i++)
-        {
-            int minIndex = i;
-            // iterate through unsorted portion of the list
-            for (int j = i; j < inventoryList.Count; j++)
-            {
-                if (inventoryList[j].itemAmount <
-                inventoryList[minIndex].itemAmount)
-                {
-                    minIndex = j;
-
-                }
-            }
-            // Swap the minimum item into position
-            if (minIndex != i)
-            {
-                InventoryItemScript iis = inventoryList[i];
-                inventoryList[i] = inventoryList[minIndex];
-                inventoryList[minIndex] = iis;
-            }
-        }
-        // Display the list in the new correct order
-        DisplayListInOrder();
-        SelSorted = true;
-        quickSorted = false;
-        MergeSorted = false;
-    }
-
-    public void StartQuickSort()
-    {
-        inventoryList = QuickSort(inventoryList);
-        DisplayListInOrder();
-        SelSorted = false;
-        quickSorted = true;
-        MergeSorted = false;
-    }
-
-    List<InventoryItemScript> QuickSort(List<InventoryItemScript> listIn)
-    {
-        if (listIn.Count <= 1)
-        {
-            return listIn;
-        }
-        // Naive pivot selection
-        int pivotIndex = 0;
-        // Left and right lists
-        List<InventoryItemScript> leftList =
-       new List<InventoryItemScript>();
-        List<InventoryItemScript> rightList =
-       new List<InventoryItemScript>();
-        for (int i = 1; i < listIn.Count; i++)
-        {
-            // Compare amounts to determine list to add to
-            if (listIn[i].itemAmount > listIn[pivotIndex].itemAmount)
-            {
-                // Greater than pivot to left list
-                leftList.Add(listIn[i]);
-            }
-            else
-            {
-                // Smaller than pivot to right list
-                rightList.Add(listIn[i]);
-            }
-        }
-
-        // Recurse left list
-        leftList = QuickSort(leftList);
-        //Recurse right list
-        rightList = QuickSort(rightList);
-        // Concatenate lists: left + pivot + right
-        leftList.Add(listIn[pivotIndex]);
-        leftList.AddRange(rightList);
-        return leftList;
-    }*/
 
     public void AddObject(int blockType)
     {
@@ -242,7 +164,9 @@ public class InventoryManager : MonoBehaviour {
                 m.Add(r[j]);
                 j++;
             }
-        }        if (i < l.Count)
+        }
+
+        if (i < l.Count)
         {
             m.Add(l[i]);
         }
