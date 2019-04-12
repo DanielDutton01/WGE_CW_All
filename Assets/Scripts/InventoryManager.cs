@@ -14,10 +14,9 @@ public class InventoryManager : MonoBehaviour {
     // Starting template item
     public GameObject startItem;
 
+    public GameObject[] buttons;
+
     bool remove = true;
-    bool quickSorted;
-    bool SelSorted;
-    bool MergeSorted;
     GameObject[] invItem;
 
     List<InventoryItemScript> inventoryList;
@@ -71,6 +70,8 @@ public class InventoryManager : MonoBehaviour {
         //deletes and renews the inventory everytime it is opened
         if (Input.GetKeyDown(KeyCode.E))
         {
+            buttons[0].SetActive(true);
+            buttons[1].SetActive(true);
             invItem = GameObject.FindGameObjectsWithTag("TempInvObject");
             remove = !remove;
             if (remove)
@@ -108,15 +109,13 @@ public class InventoryManager : MonoBehaviour {
     }
 
 
-    public void StartMergeSort()
+    public void StartMergeSort(int mergeMethod)
     {
-        inventoryList = MergeSort(inventoryList);
+        inventoryList = MergeSort(inventoryList, mergeMethod);
         DisplayListInOrder();
-        MergeSorted = true;
     }
 
-
-    List<InventoryItemScript> MergeSort(List<InventoryItemScript> a)
+    List<InventoryItemScript> MergeSort(List<InventoryItemScript> a, int MergeMethod)
     {
         
         /* check if only one element */
@@ -130,7 +129,7 @@ public class InventoryManager : MonoBehaviour {
         
         for (int i = 0; i < a.Count; i++)
         {
-            if(i < (a.Count/2))
+            if(i < Mathf.CeilToInt(a.Count/2))
             {
                 left.Add(a[i]);
             }
@@ -140,19 +139,19 @@ public class InventoryManager : MonoBehaviour {
             }
         }
 
-        MergeSort(left);
-        MergeSort(right);
-        a = Merge(left, right);
+
+            a = Merge(MergeSort(left, MergeMethod), MergeSort(right, MergeMethod), MergeMethod);
+
         return a;
     }
 
-
-    public List<InventoryItemScript> Merge(List<InventoryItemScript> l, List<InventoryItemScript> r)
+    public List<InventoryItemScript> Merge(List<InventoryItemScript> l, List<InventoryItemScript> r, int method)
     {
         List<InventoryItemScript> m = new List<InventoryItemScript>();
-        int i = 0, j = 0;
+        int i = 0;
+        int j = 0;
 
-        while (i < l.Count && j < r.Count)
+        while (i < l.Count && j < r.Count && method == 0)
         {
             if (l[i].itemAmount < r[j].itemAmount)
             {
@@ -166,15 +165,46 @@ public class InventoryManager : MonoBehaviour {
             }
         }
 
-        if (i < l.Count)
+        while (i < l.Count && j < r.Count && method == 1)
         {
-            m.Add(l[i]);
-        }
-        else
-        {
-            m.Add(r[j]);
+            if (l[i].itemAmount > r[j].itemAmount)
+            {
+                m.Add(l[i]);
+                i++;
+            }
+            else
+            {
+                m.Add(r[j]);
+                j++;
+            }
         }
 
+        while (i < l.Count && j < r.Count && method == 2)
+        {
+            //String, String > Char, Char > Int, Int
+            if (l[i].itemAmount > r[j].itemAmount)
+            {
+                m.Add(l[i]);
+                i++;
+            }
+            else
+            {
+                m.Add(r[j]);
+                j++;
+            }
+        }
+
+        while (i < l.Count)
+        {
+            m.Add(l[i]);
+            i++;
+        }
+        while (j < r.Count)
+        {
+            m.Add(r[j]);
+            j++;
+        }
             return m;
     }
+
 }

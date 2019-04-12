@@ -6,9 +6,11 @@ public class CameraScript : MonoBehaviour
 {
     public GameObject player;
     public GameObject otherChar;
+    public Transform camTransform;
     Vector3 originalCamPos;
     public float shakeTime = 0f;
     public float shakeAmount = 0.5f;
+    public float decreaseAmount = 0.4f;
     bool dialouge;
     int i = 1;
 
@@ -24,6 +26,7 @@ public class CameraScript : MonoBehaviour
     // When game object is disabled
     void OnDisable()
     {
+
         DialougeScript.OnEventDialougeSpeaker -= TrackOtherDialouge;
         DialougeScript.OnEventNoDialouge -= TrackPlayerMovement;
         DialougeScript.OnEventDialougeResponse += TrackPlayerMovement;
@@ -34,13 +37,13 @@ public class CameraScript : MonoBehaviour
     void Start()
     { 
         TrackPlayerMovement();
-
+        originalCamPos = GetComponent<Camera>().transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        CameraShake();
     }
 
     public void TrackPlayerMovement()
@@ -59,6 +62,20 @@ public class CameraScript : MonoBehaviour
     {
         transform.position = new Vector3(otherChar.transform.position.x, otherChar.transform.position.y, this.transform.position.z);
         Camera.current.orthographicSize = 1.3f;
+    }
+
+    public void CameraShake()
+    {
+        if (shakeTime > 0)
+        { 
+            GetComponent<Camera>().transform.position = originalCamPos + Random.insideUnitSphere * shakeAmount;
+            shakeTime -= Time.deltaTime * decreaseAmount;
+        }
+        else
+        {
+            shakeTime = 0f;
+            GetComponent<Camera>().transform.position = originalCamPos;
+        }
     }
 
 }

@@ -26,6 +26,8 @@ public class PlayerMovement2D : MonoBehaviour {
     public float _dashTime = 0.5f;
     Coroutine _dashReloadHandle = null;
 
+    bool hasJumped;
+    CameraScript cameraScript;
     // Use this for initialization
     void Start () {
         _pController = GetComponent<PlayerController2D>();
@@ -81,6 +83,7 @@ public class PlayerMovement2D : MonoBehaviour {
                 _rBody.velocity = new Vector2(Mathf.Clamp(_rBody.velocity.x, -_speed, _speed), _rBody.velocity.y);
                 if (_rBody.velocity.y < 0) _rBody.gravityScale = _jumpNegGravity;
                 Debug.DrawLine(new Vector3(_feet.position.x - 0.25f, _feet.position.y - 0.25f, 0), new Vector3(_feet.position.x + 0.25f, _feet.position.y - 0.25f, 0), Color.red, 0.016f, false);
+                hasJumped = true;
                 break;
         }
 	}
@@ -171,6 +174,15 @@ public class PlayerMovement2D : MonoBehaviour {
         _rBody.gravityScale = _jumpNegGravity;
         SwitchState(MovementState.IN_AIR);
         Debug.Log("DashEnd");
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.name == "Platform")
+        {
+            cameraScript.shakeTime = 2f;
+            hasJumped = false;
+        }
     }
 }
 
