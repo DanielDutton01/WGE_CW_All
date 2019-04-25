@@ -32,7 +32,8 @@ public class CollectableObjectScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && inRangeOfBlock == true)
         {
             Debug.Log("ForceAdded");
-            rb.AddForce((target.transform.position - transform.position) * forceAmount);
+            transform.LookAt(target.transform.position);
+            rb.AddForce(transform.forward * 150f * forceAmount);
         }
     }
 

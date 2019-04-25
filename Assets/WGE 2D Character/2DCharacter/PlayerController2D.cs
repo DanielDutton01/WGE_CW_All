@@ -21,14 +21,14 @@ public class PlayerController2D : MonoBehaviour {
     // When game object is enabled
     void OnEnable()
     {
-        DialougeScript.OnEventDialougeSpeaker += StopMovement;
+        DialougeScript.OnEventDialougeStart += StopMovement;
         DialougeScript.OnEventNoDialouge += StartMovement;
     }
 
     // When game object is disabled
     void OnDisable()
     {
-        DialougeScript.OnEventDialougeSpeaker -= StopMovement;
+        DialougeScript.OnEventDialougeStart -= StopMovement;
         DialougeScript.OnEventNoDialouge -= StartMovement;
     }
 

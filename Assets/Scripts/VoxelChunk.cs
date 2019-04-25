@@ -13,6 +13,7 @@ public class VoxelChunk : MonoBehaviour {
     Quaternion playerRot;
     public GameObject[] droppableBlock;
 
+
     public int chunkSize = 16;
 
     public InputField fileNameInput;

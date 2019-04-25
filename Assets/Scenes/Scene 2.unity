@@ -743,7 +743,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.9776928
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -767,7 +767,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609484268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12, y: 0, z: -9.419922}
+  m_LocalPosition: {x: -12, y: 0, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -787,9 +787,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1042164209}
   otherChar: {fileID: 1463855791}
-  camTransform: {fileID: 0}
   shakeTime: 0
-  shakeAmount: 0.5
+  shakeAmount: 0.2
+  decreaseAmount: 0.8
 --- !u!1 &630696922
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,6 +1893,7 @@ GameObject:
   - component: {fileID: 1409575369}
   - component: {fileID: 1409575370}
   - component: {fileID: 1409575371}
+  - component: {fileID: 1409575372}
   m_Layer: 0
   m_Name: DialougeDetection
   m_TagString: Untagged
@@ -1942,6 +1943,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e8ddb61364e6694795a22ae6da0c824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DiaFile: Dialogue.xml
+--- !u!61 &1409575372
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409575368}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.057575226, y: 1.0468998}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.5895615, y: 3.7852263}
+  m_EdgeRadius: 0
 --- !u!1 &1463855791
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,26 +7,40 @@ public class PlayerScript : MonoBehaviour {
     public int buildBlockType = 1;
     public GameObject inventoryMenu;
     public GameObject gameMenu;
+    InventoryManager inventoryList;
 
     int layerMask = 1 << 12;
 
     // delegate signature
     public delegate void EventBlockUse(Vector3 v, int blockType);
+    public delegate void EventBlockPlace(Vector3 v, int blockType);
+
 
     // event instances for EventBlockChanged
     public static event EventBlockUse OnEventBlockUse;
+    public static event EventBlockPlace OnEventBlockPlace;
 
+    void OnEnable()
+    {
+        InventoryManager.OnEventBlockCreate += PlaceBlock;
+    }
 
+    // When game object is disabled
+    void OnDisable()
+    {
+        InventoryManager.OnEventBlockCreate -= PlaceBlock;
+    }
 
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         InventoryInactive();
         MenuInactive();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
+
         if (Input.GetButtonDown("Fire1"))
         {
             Vector3 v;
@@ -41,7 +55,7 @@ public class PlayerScript : MonoBehaviour {
             if (PickBlock(out v, 4, false))
             {
                 Debug.Log(v);
-                OnEventBlockUse(v, buildBlockType);
+                OnEventBlockPlace(v,buildBlockType);
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -64,13 +78,12 @@ public class PlayerScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (inventoryMenu.activeInHierarchy == false)
-            {              
+            {
                 InventoryActive();
-                
             }
             else
             {
-                InventoryInactive();             
+                InventoryInactive();
             }
         }
 
@@ -87,7 +100,12 @@ public class PlayerScript : MonoBehaviour {
         }
 
     }
-    
+
+    public void PlaceBlock(Vector3 v, int buildBlock)
+    { 
+        OnEventBlockUse(v, buildBlock);
+    }
+
     bool PickBlock(out Vector3 v, float dist, bool blockOption)
     {
         v = new Vector3();
@@ -106,7 +124,6 @@ public class PlayerScript : MonoBehaviour {
                 return true;
             }
         }
-
         return false;
     }
     

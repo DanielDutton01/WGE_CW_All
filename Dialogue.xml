@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DialogueScript xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <nodes>
+    <DialogueNodeScript>
+      <NodeID>0</NodeID>
+      <Text>Hey, how's it going?</Text>
+      <options>
+        <DialogueOptionScript>
+          <Text>I'm doing okay.</Text>
+          <DestinationNodeID>1</DestinationNodeID>
+        </DialogueOptionScript>
+        <DialogueOptionScript>
+          <Text>I'm doing terribly.</Text>
+          <DestinationNodeID>2</DestinationNodeID>
+        </DialogueOptionScript>
+        <DialogueOptionScript>
+          <Text>I'm doing great</Text>
+          <DestinationNodeID>3</DestinationNodeID>
+        </DialogueOptionScript>
+      </options>
+    </DialogueNodeScript>
+    <DialogueNodeScript>
+      <NodeID>1</NodeID>
+      <Text>That's good to hear.</Text>
+      <options>
+        <DialogueOptionScript>
+          <Text>Bye.</Text>
+          <DestinationNodeID>-1</DestinationNodeID>
+        </DialogueOptionScript>
+      </options>
+    </DialogueNodeScript>
+    <DialogueNodeScript>
+      <NodeID>2</NodeID>
+      <Text>Aww, that's a shame.</Text>
+      <options>
+        <DialogueOptionScript>
+          <Text>Bye.</Text>
+          <DestinationNodeID>-1</DestinationNodeID>
+        </DialogueOptionScript>
+      </options>
+    </DialogueNodeScript>
+    <DialogueNodeScript>
+      <NodeID>3</NodeID>
+      <Text>No need to brag about it.</Text>
+      <options>
+        <DialogueOptionScript>
+          <Text>Then why did you ask?</Text>
+          <DestinationNodeID>7</DestinationNodeID>
+        </DialogueOptionScript>
+        <DialogueOptionScript>
+          <Text>Bye</Text>
+          <DestinationNodeID>-1</DestinationNodeID>
+        </DialogueOptionScript>
+      </options>
+    </DialogueNodeScript>
+    <DialogueNodeScript>
+      <NodeID>1</NodeID>
+      <Text>That's good to hear.</Text>
+      <options>
+        <DialogueOptionScript>
+          <Text>Bye.</Text>
+          <DestinationNodeID>-1</DestinationNodeID>
+        </DialogueOptionScript>
+      </options>
+    </DialogueNodeScript>
+    <DialogueNodeScript>
+      <NodeID>2</NodeID>
+      <Text>Aww, that's a shame.</Text>
+      <options>
+        <DialogueOptionScript>
+          <Text>Bye.</Text>
+          <DestinationNodeID>-1</DestinationNodeID>
+        </DialogueOptionScript>
+      </options>
+    </DialogueNodeScript>
+    <DialogueNodeScript>
+      <NodeID>3</NodeID>
+      <Text>No need to brag about it.</Text>
+      <options>
+        <DialogueOptionScript>
+          <Text>Then why did you ask?</Text>
+          <DestinationNodeID>7</DestinationNodeID>
+        </DialogueOptionScript>
+        <DialogueOptionScript>
+          <Text>Bye</Text>
+          <DestinationNodeID>-1</DestinationNodeID>
+        </DialogueOptionScript>
+      </options>
+    </DialogueNodeScript>
+    <DialogueNodeScript>
+      <NodeID>4</NodeID>
+      <Text>That's good to hear.</Text>
+      <options>
+        <DialogueOptionScript>
+          <Text>Bye.</Text>
+          <DestinationNodeID>-1</DestinationNodeID>
+        </DialogueOptionScript>
+      </options>
+    </DialogueNodeScript>
+    <DialogueNodeScript>
+      <NodeID>4</NodeID>
+      <Text>That's good to hear.</Text>
+      <options>
+        <DialogueOptionScript>
+          <Text>Bye.</Text>
+          <DestinationNodeID>-1</DestinationNodeID>
+        </DialogueOptionScript>
+      </options>
+    </DialogueNodeScript>
+  </nodes>
+</DialogueScript>

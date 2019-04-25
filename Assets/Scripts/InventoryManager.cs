@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
@@ -21,15 +22,23 @@ public class InventoryManager : MonoBehaviour {
 
     List<InventoryItemScript> inventoryList;
 
+    public delegate void EventBlockCreate(Vector3 v, int blockType);
+
+    // event instances for EventBlockChanged
+    public static event EventBlockCreate OnEventBlockCreate;
+
+
     void OnEnable()
     {
         CollectableObjectScript.OnEventBlockPickUp += AddObject;
+        PlayerScript.OnEventBlockPlace += ClearBlock;
     }
 
     // When game object is disabled
     void OnDisable()
     {
         CollectableObjectScript.OnEventBlockPickUp -= AddObject;
+        PlayerScript.OnEventBlockPlace -= ClearBlock;
     }
 
 
@@ -103,16 +112,30 @@ public class InventoryManager : MonoBehaviour {
         }      
     }
 
+
     public void AddObject(int blockType)
     {
         itemAmounts[blockType - 1]++;
     }
 
+    public void ClearBlock(Vector3 v, int blockType)
+    {
+        if (itemAmounts[blockType - 1] != 0)
+        {
+            itemAmounts[blockType - 1]--;
+            OnEventBlockCreate(v, blockType);
+        }
+    }
 
     public void StartMergeSort(int mergeMethod)
     {
         inventoryList = MergeSort(inventoryList, mergeMethod);
         DisplayListInOrder();
+    }
+
+    public void StartTextSearch()
+    {
+
     }
 
     List<InventoryItemScript> MergeSort(List<InventoryItemScript> a, int MergeMethod)
@@ -182,7 +205,39 @@ public class InventoryManager : MonoBehaviour {
         while (i < l.Count && j < r.Count && method == 2)
         {
             //String, String > Char, Char > Int, Int
-            if (l[i].itemAmount > r[j].itemAmount)
+
+            string name1 = l[i].itemName;
+            string name2 = r[i].itemName;
+            char[] charName1 = name1.ToCharArray();
+            char[] charName2 = name2.ToCharArray();
+            int intName1 = Convert.ToInt32(charName1[0]);
+            int intName2 = Convert.ToInt32(charName2[0]);
+
+            if (intName1 <= intName2)
+            {
+                Debug.Log(name1);
+                m.Add(l[i]);
+                i++;              
+            }
+            else
+            {
+                Debug.Log(name2);
+                m.Add(r[j]);
+                j++;
+            }
+        }
+
+        while (i < l.Count && j < r.Count && method == 3)
+        {
+            //String, String > Char, Char > Int, Int
+            string name1 = l[i].itemName;
+            string name2 = r[i].itemName;
+            char[] charName1 = name1.ToCharArray();
+            char[] charName2 = name2.ToCharArray();
+            int intName1 = Convert.ToInt32(charName1[0]);
+            int intName2 = Convert.ToInt32(charName2[0]);
+
+            if (intName1 >= intName2)
             {
                 m.Add(l[i]);
                 i++;
