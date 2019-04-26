@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController2D : MonoBehaviour {
 
     bool charMovement;
+    public GameObject gameMenu;
 
     public delegate void JumpInput();
     public delegate void JumpReleaseInput();
@@ -35,11 +36,17 @@ public class PlayerController2D : MonoBehaviour {
     // Use this for initialization
     void Start () {
         charMovement = true;
+        MenuInactive();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameMenu.activeInHierarchy == true)
+        {
+            StopMovement();
+        }
+
         float hMove = Input.GetAxis("Horizontal");
         float vMove = Input.GetAxis("Vertical");
         if (charMovement == true)
@@ -63,6 +70,19 @@ public class PlayerController2D : MonoBehaviour {
 
             _hMoveInput(hMove);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (gameMenu.activeInHierarchy == false)
+            {
+                MenuActive();
+            }
+            else
+            {
+                MenuInactive();
+            }
+        }
+        
     }
 
     void StopMovement()
@@ -75,4 +95,13 @@ public class PlayerController2D : MonoBehaviour {
         charMovement = true;
     }
 
+    public void MenuActive()
+    {
+        gameMenu.SetActive(true);
+    }
+
+    public void MenuInactive()
+    {
+        gameMenu.SetActive(false);
+    }
 }

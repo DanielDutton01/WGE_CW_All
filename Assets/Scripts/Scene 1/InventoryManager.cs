@@ -17,6 +17,8 @@ public class InventoryManager : MonoBehaviour {
 
     public GameObject[] buttons;
 
+    public InputField searchField;
+
     bool remove = true;
     GameObject[] invItem;
 
@@ -54,8 +56,7 @@ public class InventoryManager : MonoBehaviour {
         {
 
             // Create a duplicate of the starter item
-            GameObject inventoryItem =
-            (GameObject)Instantiate(startItem);
+            GameObject inventoryItem = (GameObject)Instantiate(startItem);
             inventoryItem.gameObject.tag = ("TempInvObject");
             // UI items need to parented by the canvas or an object within the canvas
             inventoryItem.transform.SetParent(parentPanel);
@@ -133,9 +134,37 @@ public class InventoryManager : MonoBehaviour {
         DisplayListInOrder();
     }
 
-    public void StartTextSearch()
+    public void StartStringSearch()
     {
+        inventoryList = Search(inventoryList);
+        DisplayListInOrder();
+    }
 
+    List<InventoryItemScript> Search(List<InventoryItemScript> a)
+    {
+        List<InventoryItemScript> invSearch = new List<InventoryItemScript>(a.Count);
+        string searchResults = searchField.text;
+
+        bool[] searchCounter = new bool[a.Count];
+
+        for (int i = 0; i < a.Count; i++)
+        {
+            if(searchResults.ToLower() == a[i].itemName.ToLower())
+            {
+                invSearch.Add(a[i]);
+                searchCounter[i] = true;
+            }
+        }
+
+        for(int i = 0; i < a.Count; i++)
+        {
+            if(searchCounter[i] == false)
+            {
+                invSearch.Add(a[i]);
+            }
+        }
+
+        return invSearch;
     }
 
     List<InventoryItemScript> MergeSort(List<InventoryItemScript> a, int MergeMethod)
@@ -205,7 +234,6 @@ public class InventoryManager : MonoBehaviour {
         while (i < l.Count && j < r.Count && method == 2)
         {
             //String, String > Char, Char > Int, Int
-
             string name1 = l[i].itemName;
             string name2 = r[i].itemName;
             char[] charName1 = name1.ToCharArray();

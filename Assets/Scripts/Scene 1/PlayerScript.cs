@@ -7,7 +7,6 @@ public class PlayerScript : MonoBehaviour {
     public int buildBlockType = 1;
     public GameObject inventoryMenu;
     public GameObject gameMenu;
-    InventoryManager inventoryList;
 
     int layerMask = 1 << 12;
 
@@ -75,7 +74,7 @@ public class PlayerScript : MonoBehaviour {
             buildBlockType = 4;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (inventoryMenu.activeInHierarchy == false)
             {
