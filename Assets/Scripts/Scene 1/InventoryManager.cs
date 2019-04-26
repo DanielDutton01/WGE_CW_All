@@ -78,7 +78,7 @@ public class InventoryManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //deletes and renews the inventory everytime it is opened
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Comma))
         {
             buttons[0].SetActive(true);
             buttons[1].SetActive(true);

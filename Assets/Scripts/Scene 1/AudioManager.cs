@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
-    public AudioClip destroy1, destroy2, destroy3, destroy4;
-    public AudioClip placeBlockSound;
+    public AudioClip place1, place2, place3, place4;
+    public AudioClip destroy;
 
     // Use this for initialization
     void Start () {
@@ -20,23 +20,23 @@ public class AudioManager : MonoBehaviour {
     {
         if (blockType == 0)
         {
-            GetComponent<AudioSource>().PlayOneShot(destroy1);
+            GetComponent<AudioSource>().PlayOneShot(place1);
         }
         else if (blockType == 1)
         {
-            GetComponent<AudioSource>().PlayOneShot(destroy2);
+            GetComponent<AudioSource>().PlayOneShot(place2);
         }
         else if (blockType == 2)
         {
-            GetComponent<AudioSource>().PlayOneShot(destroy3);
+            GetComponent<AudioSource>().PlayOneShot(place3);
         }
         else if (blockType == 3)
         {
-            GetComponent<AudioSource>().PlayOneShot(destroy4);
+            GetComponent<AudioSource>().PlayOneShot(place4);
         }
         else
         {
-            GetComponent<AudioSource>().PlayOneShot(placeBlockSound);
+            GetComponent<AudioSource>().PlayOneShot(destroy);
         }
 
     }

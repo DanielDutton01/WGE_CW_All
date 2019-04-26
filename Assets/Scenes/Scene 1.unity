@@ -598,11 +598,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 077c31189a7c4ff449a97ea16c81cc6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroy1: {fileID: 8300000, guid: 4cbafcedb2c722b498c81dda46fb7923, type: 3}
-  destroy2: {fileID: 8300000, guid: f39fec5549b1e2d45991260639a2fe48, type: 3}
-  destroy3: {fileID: 8300000, guid: 184a031e108090d4dbfe3444b234fd0b, type: 3}
-  destroy4: {fileID: 8300000, guid: b100bf2473c713342a224073928e817a, type: 3}
-  placeBlockSound: {fileID: 8300000, guid: a5277b62942cfc74ebd45c5ea382f980, type: 3}
+  place1: {fileID: 8300000, guid: 4cbafcedb2c722b498c81dda46fb7923, type: 3}
+  place2: {fileID: 8300000, guid: f39fec5549b1e2d45991260639a2fe48, type: 3}
+  place3: {fileID: 8300000, guid: 184a031e108090d4dbfe3444b234fd0b, type: 3}
+  place4: {fileID: 8300000, guid: b100bf2473c713342a224073928e817a, type: 3}
+  destroy: {fileID: 8300000, guid: a5277b62942cfc74ebd45c5ea382f980, type: 3}
 --- !u!1 &130861862
 GameObject:
   m_ObjectHideFlags: 0
@@ -2369,18 +2369,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 944843710}
-        m_MethodName: StartTextSearch
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}

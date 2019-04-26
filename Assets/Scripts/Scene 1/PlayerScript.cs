@@ -74,7 +74,7 @@ public class PlayerScript : MonoBehaviour {
             buildBlockType = 4;
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Comma))
         {
             if (inventoryMenu.activeInHierarchy == false)
             {
