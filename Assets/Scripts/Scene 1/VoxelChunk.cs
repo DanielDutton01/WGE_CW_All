@@ -9,8 +9,6 @@ public class VoxelChunk : MonoBehaviour {
     public int[,,] terrainArray;
     public GameObject player;
     public GameObject playerCamera;
-    Vector3 playerPos;
-    Quaternion playerRot;
     public GameObject[] droppableBlock;
 
 
@@ -38,25 +36,9 @@ public class VoxelChunk : MonoBehaviour {
         PlayerScript.OnEventBlockUse -= SetBlock;
     }
 
-    public void clearObject()
-    {
-        Mesh mesh = GetComponent<MeshFilter>().sharedMesh;
-        mesh.Clear();
-    }
-
     public void Start()
     {
         InitialiseChunk();
-    }
-
-    public void LoadChunk(string filename)
-    {
-        voxelGenerator = GetComponent<VoxelGenerator>();
-        terrainArray = XMLVoxelFileWriter.LoadChunkFromXMLFile(16, filename);
-        voxelGenerator.Initialise();
-        InitialiseTerrain();
-        CreateTerrain();
-        voxelGenerator.UpdateMesh();
     }
 
     public void InitialiseChunk()
@@ -67,40 +49,23 @@ public class VoxelChunk : MonoBehaviour {
 
         voxelGenerator.Initialise();
         InitialiseTerrain();
-        //CreatePathway();
         CreateTerrain();
         voxelGenerator.UpdateMesh();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            saveFileText = fileNameInput.text;
-            Saving();
-        }
+        saveFileText = fileNameInput.text;
         if (Input.GetKeyDown(KeyCode.F2))
-        {
-            saveFileText = fileNameInput.text;
-            Loading();
+        { 
+            LoadingMain();
         }
-    }
-
-    public void Saving()
-    {
-        playerPos = player.transform.position;
-        playerRot = playerCamera.transform.rotation;
-
-        XMLVoxelFileWriter.SaveChunkToXMLFile(terrainArray, saveFileText);
-        XMLVoxelFileWriter.SavePlayerToXMLFile(playerPos, playerRot, "PlayerPosition");
     }
 
     public void LoadingMain()
     {
         // Get terrainArray from XML file
         terrainArray = XMLVoxelFileWriter.LoadChunkFromXMLFile(16, saveFileText);
-        playerPos = XMLVoxelFileWriter.LoadPlayerPosFromXMLFile("PlayerPosition");
-        playerRot = XMLVoxelFileWriter.LoadPlayerRotFromXMLFile("PlayerPosition");
         Loading();
     }
 
@@ -108,8 +73,6 @@ public class VoxelChunk : MonoBehaviour {
     {
         // Get terrainArray from XML file
         terrainArray = XMLVoxelFileWriter.LoadChunkFromXMLFile(16, "AssessmentChunk1");
-        playerPos = XMLVoxelFileWriter.LoadPlayerPosFromXMLFile("PlayerPosition");
-        playerRot = XMLVoxelFileWriter.LoadPlayerRotFromXMLFile("PlayerPosition");
         Loading();
     }
 
@@ -117,8 +80,6 @@ public class VoxelChunk : MonoBehaviour {
     {
         // Get terrainArray from XML file
         terrainArray = XMLVoxelFileWriter.LoadChunkFromXMLFile(16, "AssessmentChunk2");
-        playerPos = XMLVoxelFileWriter.LoadPlayerPosFromXMLFile("PlayerPosition");
-        playerRot = XMLVoxelFileWriter.LoadPlayerRotFromXMLFile("PlayerPosition");
         Loading();
     }
 
@@ -129,14 +90,8 @@ public class VoxelChunk : MonoBehaviour {
         // Update mesh info
         voxelGenerator.UpdateMesh();
 
-        player.transform.position = new Vector3(playerPos.x, playerPos.y, playerPos.z);
-        playerCamera.transform.rotation = Quaternion.Euler(playerRot.x, playerRot.y, playerRot.z);
-        player.transform.rotation = Quaternion.Euler(playerRot.x, playerRot.y, playerRot.z);
-
         player.SetActive(false);
-        player.transform.position = new Vector3(playerPos.x, playerPos.y, playerPos.z);
-        playerCamera.transform.rotation = Quaternion.Euler(playerRot.x, playerRot.y, playerRot.z);
-        player.transform.rotation = Quaternion.Euler(playerRot.x, playerRot.y, playerRot.z);
+        player.transform.position = new Vector3(5, 10, 5);
         player.SetActive(true);
     }
 

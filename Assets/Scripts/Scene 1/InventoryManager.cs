@@ -43,12 +43,6 @@ public class InventoryManager : MonoBehaviour {
         PlayerScript.OnEventBlockPlace -= ClearBlock;
     }
 
-
-    // Use this for initialization
-    void Start () {
-        //InventoryGen();
-    }
-
 	public void InventoryGen()
     {
         inventoryList = new List<InventoryItemScript>();

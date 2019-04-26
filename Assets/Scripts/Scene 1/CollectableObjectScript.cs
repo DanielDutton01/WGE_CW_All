@@ -12,7 +12,6 @@ public class CollectableObjectScript : MonoBehaviour
     Rigidbody rb;
     bool inRangeOfBlock;
 
-
     // delegate signature
     public delegate void EventBlockPickUp(int blockType);
 
@@ -23,7 +22,6 @@ public class CollectableObjectScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
     }
 
     // Update is called once per frame

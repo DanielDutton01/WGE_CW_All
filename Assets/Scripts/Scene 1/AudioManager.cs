@@ -20,23 +20,23 @@ public class AudioManager : MonoBehaviour {
     {
         if (blockType == 0)
         {
-            GetComponent<AudioSource>().PlayOneShot(place1);
+            GetComponent<AudioSource>().PlayOneShot(destroy);
         }
         else if (blockType == 1)
         {
-            GetComponent<AudioSource>().PlayOneShot(place2);
+            GetComponent<AudioSource>().PlayOneShot(place1);
         }
         else if (blockType == 2)
         {
-            GetComponent<AudioSource>().PlayOneShot(place3);
+            GetComponent<AudioSource>().PlayOneShot(place2);
         }
         else if (blockType == 3)
         {
-            GetComponent<AudioSource>().PlayOneShot(place4);
+            GetComponent<AudioSource>().PlayOneShot(place3);
         }
         else
         {
-            GetComponent<AudioSource>().PlayOneShot(destroy);
+            GetComponent<AudioSource>().PlayOneShot(place4);
         }
 
     }

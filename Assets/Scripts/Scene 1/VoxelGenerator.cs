@@ -22,13 +22,6 @@ public class VoxelGenerator : MonoBehaviour
     GameObject cube;
     float totalTime = 1;
 
-    /*
-    private void Start()
-    {
-        Initialise();
-        UpdateMesh();
-    }
-*/
 
     public void Initialise()
     {
@@ -47,12 +40,6 @@ public class VoxelGenerator : MonoBehaviour
         vertexList = new List<Vector3>();
         triIndexList = new List<int>();
         UVList = new List<Vector2>();
-
-    }
-
-
-    private void Update()
-    {
 
     }
 

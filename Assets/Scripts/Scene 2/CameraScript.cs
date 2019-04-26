@@ -16,16 +16,16 @@ public class CameraScript : MonoBehaviour
     void OnEnable()
     {
         PlayerMovement2D.OnEventShakeCamera += CameraShake;
-        DialougeScript.OnEventDialougeStart += ZoomToDialouge;
-        DialougeScript.OnEventNoDialouge += TrackPlayerMovement;
+        DialogueSetScript.OnEventDialougeStart += ZoomToDialouge;
+        DialogueSetScript.OnEventNoDialouge += TrackPlayerMovement;
     }
 
     // When game object is disabled
     void OnDisable()
     {
         PlayerMovement2D.OnEventShakeCamera -= CameraShake;
-        DialougeScript.OnEventDialougeStart -= ZoomToDialouge;
-        DialougeScript.OnEventNoDialouge -= TrackPlayerMovement;
+        DialogueSetScript.OnEventDialougeStart -= ZoomToDialouge;
+        DialogueSetScript.OnEventNoDialouge -= TrackPlayerMovement;
     }
 
 

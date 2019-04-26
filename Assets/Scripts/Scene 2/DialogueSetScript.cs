@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml;
 using DialogueTree;
 
-public class DialougeScript : MonoBehaviour {
+public class DialogueSetScript : MonoBehaviour {
 
     Vector2 scroller;
 
@@ -32,7 +32,6 @@ public class DialougeScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         dia = DialogueScript.LoadDialogue(DiaFile);
-
         RunDialogue();
     }
 	
@@ -116,7 +115,6 @@ public class DialougeScript : MonoBehaviour {
             GUILayout.EndVertical();
             GUILayout.EndArea();
         }
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

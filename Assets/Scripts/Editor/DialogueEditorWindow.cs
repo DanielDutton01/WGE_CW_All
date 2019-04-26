@@ -46,7 +46,7 @@ namespace DialogueEdit
 
                 if (setAmount >= 0)
                 {
-                    dialougeEdit0 = EditorGUILayout.Foldout(dialougeEdit0, "Dialouge Editor");
+                    dialougeEdit0 = EditorGUILayout.Foldout(dialougeEdit0, "Dialogue Editor");
                     if (dialougeEdit0)
                     {
                         EditorGUILayout.LabelField("ID 0");
@@ -65,7 +65,7 @@ namespace DialogueEdit
                 }
                 if (setAmount >= 1)
                 {
-                    dialougeEdit1 = EditorGUILayout.Foldout(dialougeEdit1, "Dialouge Editor");
+                    dialougeEdit1 = EditorGUILayout.Foldout(dialougeEdit1, "Dialogue Editor");
                     if (dialougeEdit1)
                     {
                         EditorGUILayout.LabelField("ID 1");
@@ -84,7 +84,7 @@ namespace DialogueEdit
                 }
                 if (setAmount >= 2)
                 {
-                    dialougeEdit2 = EditorGUILayout.Foldout(dialougeEdit2, "Dialouge Editor");
+                    dialougeEdit2 = EditorGUILayout.Foldout(dialougeEdit2, "Dialogue Editor");
                     if (dialougeEdit2)
                     {
                         EditorGUILayout.LabelField("ID 2");
@@ -103,7 +103,7 @@ namespace DialogueEdit
                 }
                 if (setAmount >= 3)
                 {
-                    dialougeEdit3 = EditorGUILayout.Foldout(dialougeEdit3, "Dialouge Editor");
+                    dialougeEdit3 = EditorGUILayout.Foldout(dialougeEdit3, "Dialogue Editor");
                     if (dialougeEdit3)
                     {
                         EditorGUILayout.LabelField("ID 3");
@@ -122,7 +122,7 @@ namespace DialogueEdit
                 }
                 if (setAmount >= 4)
                 {
-                    dialougeEdit4 = EditorGUILayout.Foldout(dialougeEdit4, "Dialouge Editor");
+                    dialougeEdit4 = EditorGUILayout.Foldout(dialougeEdit4, "Dialogue Editor");
                     if (dialougeEdit4)
                     {
                         EditorGUILayout.LabelField("ID 4");
@@ -141,7 +141,7 @@ namespace DialogueEdit
                 }
                 if (setAmount >= 5)
                 {
-                    dialougeEdit5 = EditorGUILayout.Foldout(dialougeEdit5, "Dialouge Editor");
+                    dialougeEdit5 = EditorGUILayout.Foldout(dialougeEdit5, "Dialogue Editor");
                     if (dialougeEdit5)
                     {
                         EditorGUILayout.LabelField("ID 5");
